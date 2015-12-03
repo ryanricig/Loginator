@@ -10,6 +10,10 @@ $topbar-bg-color: #5AADBB;
  */
 @import '../../bower_components/foundation/scss/foundation';
 
+
+@import 'styles/countdown';
+@import 'styles/type';
+
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
  *  sass dependencies when defined in the bower.json of your dependencies
@@ -36,6 +40,8 @@ $topbar-bg-color: #5AADBB;
     width: 50px;
   }
 }
+
+
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
