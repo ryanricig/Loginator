@@ -2,35 +2,51 @@
 
     <div class="row">
         <div class="small-12 large-3 columns">
-            High Score
+            <p>High Score: {{main.highScore}}</p>
         </div>
         <div class="small-12 large-6 large-text-center columns">
             Loginator
         </div>
         <div class="small-12 large-3 columns">
-            <p>Your Score: {{main.score}}</p>
-            <p>Time Remaining: {{main.timeRemaining}}</p>
+           <!--<p>Score: {{dataservice.gameScore}}</p>-->
+            <p>Score: {{main.score}}</p>
+            <p>Time: {{main.timeRemaining}}</p>
         </div>
     </div>
 
     <div class="row">
         <div class="large-12 columns">
             <form>
-                <div class="row">
+                <div class="row" >
                     <div class="medium-6 large-centered columns">
-                        <label>Username
-                            <input type="text" placeholder="Enter Username">
+                        <label id="un">Username
+                            <input  type="text" placeholder="Enter Username" data-ng-model="main.username">
                         </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="medium-6 large-centered columns">
-                        <label>Password
-                            <input type="password" placeholder="Enter Password">
+                        <label id="pw">Password
+                            <input type="password" placeholder="Enter Password" data-ng-model="main.password"ng-pattern="a">
                         </label>
                     </div>
                 </div>
+
+
+    <div class="row">
+        <div class="large-12 columns">
+            <button type="button" class="large button" data-ng-click="main.localCredCheck()">Submit</button>
+         </div>
+    </div>   
+
+
+<br>
+{{main.userMessage}}
+<br>
+{{main.multiplierMessage}}
+ <img align = "center" ng-src="{{main.monster}}"/>
             </form>
+
         </div>
     </div>
 
@@ -39,3 +55,7 @@
     </div>
 
 </div>
+
+
+
+

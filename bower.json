@@ -17,7 +17,8 @@
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
     "angular": "~1.4.2",
-    "gsap": "greensock#~1.18.0"
+    "gsap": "greensock#~1.18.0",
+    "angular-audio": "~1.7.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

@@ -11,7 +11,7 @@
     //display variables
     var vm = this;
     vm.highScore = dataService.highScore;
-    vm.score = dataService.score;
+    vm.score = dataService.gameScore;
 
   }
 })();
