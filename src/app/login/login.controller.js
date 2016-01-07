@@ -12,9 +12,9 @@
     var vm = this;
     vm.loginError = false;
 
-    vm.userInfo = {
-      un: null,
-      pw: null
+    vm.credentials = {
+      un: '',
+      pw: ''
     };
 
     vm.response = null;
@@ -25,12 +25,17 @@
     vm.checkCreds = function(){
       vm.loginError = false;
 
-      vm.response = credentialService.checkCredentials();
-
-      if(vm.response > 0){
-        $state.go('home');
-      }else{
+      if(!vm.credentials.un || !vm.credentials.pw){
         vm.loginError = true;
+
+      }else{
+        vm.response = credentialService.checkCredentials(vm.credentials);
+
+        if(vm.response > 0){
+          $state.go('home');
+        }else{
+          vm.loginError = true;
+        }
       }
 
     };

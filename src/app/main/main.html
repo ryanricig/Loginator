@@ -1,58 +1,65 @@
 <div class="container">
 
-    <div class="row">
-        <div class="small-12 large-3 columns">
-            <p>High Score: {{main.highScore}}</p>
-        </div>
-        <div class="small-12 large-6 large-text-center columns">
-            Loginator
-        </div>
-        <div class="small-12 large-3 columns">
-           <!--<p>Score: {{dataservice.gameScore}}</p>-->
-            <p>Score: {{main.score}}</p>
-            <p>Time: {{main.timeRemaining}}</p>
-        </div>
+  <div class="row">
+    <div class="small-12 large-3 columns">
+      <p>High Score: {{main.highScore}}</p>
     </div>
+    <div class="small-12 large-6 large-text-center columns">
+      Loginator
+    </div>
+    <div class="small-12 large-3 columns">
+      <!--<p>Score: {{dataservice.gameScore}}</p>-->
+      <p>Score: {{main.score}}</p>
+      <p>Time: {{main.timeRemaining}}</p>
+    </div>
+  </div>
 
-    <div class="row">
-        <div class="large-12 columns">
-            <form>
-                <div class="row" >
-                    <div class="medium-6 large-centered columns">
-                        <label id="un">Username
-                            <input  type="text" placeholder="Enter Username" data-ng-model="main.username">
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="medium-6 large-centered columns">
-                        <label id="pw">Password
-                            <input type="password" placeholder="Enter Password" data-ng-model="main.password"ng-pattern="a">
-                        </label>
-                    </div>
-                </div>
-
-
-    <div class="row">
-        <div class="large-12 columns">
-            <button type="button" class="large button" data-ng-click="main.localCredCheck()">Submit</button>
-         </div>
-    </div>   
-
-
-<br>
-{{main.userMessage}}
-<br>
-{{main.multiplierMessage}}
- <img align = "center" ng-src="{{main.monster}}"/>
-            </form>
-
+  <div class="row">
+    <div class="large-12 columns">
+      <form ng-submit="main.localCredCheck()">
+        <div class="row">
+          <div class="medium-6 large-centered columns">
+            <label id="un">Username
+              <input type="text" placeholder="Enter Username" data-ng-model="main.username">
+            </label>
+          </div>
         </div>
-    </div>
+        <div class="row">
+          <div class="medium-6 large-centered columns">
+            <label id="pw">Password
+              <input type="password" placeholder="Enter Password" data-ng-model="main.password" ng-pattern="a">
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-6 large-centered columns">
+            <button type="submit" class="large button">Submit</button>
+          </div>
+        </div>
 
-    <div ng-hide="main.gameStarted" class="countdown cell">
-        {{main.countDownRemaining}}
+
+        <div class="row">
+          <div class="medium-6 large-centered columns">
+            <p class="log-user-message">{{main.userMessage}}</p>
+            <div class="log-monster">
+              <div class="log-multiplier-left">{{main.multiplierMessage}}</div>
+              <div class="log-multiplier-right">{{main.multiplierMessage}}</div>
+              <img align="center" ng-src="{{main.monster}}"/>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </form>
+
     </div>
+  </div>
+
+  <div ng-hide="main.gameStarted" class="countdown cell">
+    {{main.countDownRemaining}}
+  </div>
 
 </div>
 

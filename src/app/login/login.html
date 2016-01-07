@@ -9,23 +9,22 @@ Loginator
 
   <div class="row">
     <div class="large-12 columns">
-      <form>
+      <form ng-submit="login.checkCreds()">
         <div class="row">
           <div class="medium-6 large-centered columns">
             <label>Username
-              <input type="text" placeholder="Enter Username">
+              <input class="log-text" ng-model="login.credentials.un" type="text" placeholder="Enter Username">
             </label>
           </div>
           </div>
         <div class="row">
           <div class="medium-6 large-centered columns">
-            <label for = "vm.user.pw">Password
-              <input type="password" class="inputlg" placeholder="Enter Password">
+            <label>Password
+              <input class="log-text" ng-model="login.credentials.pw" type="password" class="inputlg" placeholder="Enter Password">
             </label>
 
-
       <label>Playing Time:
-        <select name="playTime" ng-model="main.countdownTimeout">
+        <select class="log-select" name="playTime" ng-model="main.countdownTimeout">
           <option value=60>1 minute</option>
           <option value=120>2 minutes</option>
           <option value=180>3 minutes</option>
@@ -34,7 +33,7 @@ Loginator
 
 
 
-            <button type="button" class="large button" ng-click="login.checkCreds()">Check Me!</button>
+            <button type="submit" class="large button">Check Me!</button>
           </div>
         </div>
 

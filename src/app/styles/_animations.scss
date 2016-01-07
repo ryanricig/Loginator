@@ -1,0 +1,31 @@
+.log-monster{
+  position:absolute;
+  display:inline-block;
+  margin:0 auto;
+  overflow:visible;
+  width:80%;
+
+  div{
+    position:absolute;
+    left:0;
+    font-size:50px;
+    top:100px;
+    width:300px;
+    text-align:center;
+    background-color:transparent;
+
+    &.log-multiplier-left{
+      left:0;
+      right:initial;
+      margin-left:-150px;
+    }
+    &.log-multiplier-right{
+      right:0;
+      left:initial;
+      margin-right:-150px;
+    }
+  }
+  img{
+    max-width:100%;
+  }
+}

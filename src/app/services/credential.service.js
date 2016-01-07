@@ -1,25 +1,34 @@
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('loginApp')
-      .factory('credentialService', credentialService);
+    .factory('credentialService', credentialService);
 
 
   /** @ngInject */
-  function credentialService($http) {
+  function credentialService() {
 
-        var service = {};
-        service.checkCredentials = function () {
-          //return $http.post(urlBase, cust);
-          return Math.round(Math.random());
-        };
+    var service = {
 
-        //internal variables
-        var urlBase = '/api/customers';
+      credentials: {
+        un: '',
+        pw: ''
+      },
+      checkCredentials: checkCredentials
 
-        return service;
-      }
+    };
+
+
+    function checkCredentials(credentials) {
+      console.log('credentialService: checkCredentials: ', credentials);
+      service.credentials = credentials;
+      return Math.round(Math.random());
+    }
+
+
+    return service;
+  }
 
 })();
 
