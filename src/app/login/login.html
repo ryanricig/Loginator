@@ -2,18 +2,18 @@
 
   <div class="row">
     <div class="small-12 large-6 large-centered large-text-center columns">
-Loginator
+<img align="center" ng-src="{{login.gameLogo}}">
     </div>
   </div>
 
+  <div class="row" border: 25px solid navy;>
 
-  <div class="row">
     <div class="large-12 columns">
       <form ng-submit="login.checkCreds()">
         <div class="row">
           <div class="medium-6 large-centered columns">
             <label>Username
-              <input class="log-text" ng-model="login.credentials.un" type="text" placeholder="Enter Username">
+              <input class="log-text" ng-model="login.credentials.un" autocomplete="off" type="text" placeholder="Enter Username">
             </label>
           </div>
           </div>
@@ -24,23 +24,25 @@ Loginator
             </label>
 
       <label>Playing Time:
-        <select class="log-select" name="playTime" ng-model="main.countdownTimeout">
-          <option value=60>1 minute</option>
+          <select id = "timeOptions" class="log-select" name="playTime" ng-model="login.credentials.tm">
+          <option value=60 selected>1 minute</option>
           <option value=120>2 minutes</option>
           <option value=180>3 minutes</option>
         </select>
       </label>
-
-
-
-            <button type="submit" class="large button">Check Me!</button>
+      <br>
+            <button type="submit" id = "loginButton" class="large button">Check Me!</button>
+          <img align="center" id = "dancingHead" ng-src="{{login.monsterHead}}">  
           </div>
+
+
+          
         </div>
 
       </form>
       <div ng-cloak ng-show="login.loginError" class="alert callout" data-closable>
         <h5>Login Error</h5>
-        <p>Try again little kid!</p>
+        <p>Username or password is incorrect.</p>
       </div>
 
     </div>

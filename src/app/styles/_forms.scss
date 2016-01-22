@@ -13,34 +13,157 @@ label {
 }
 
 input[type="text"], input[type="password"] {
-
   &.log-text {
-    font-family: "Montserrat", Arial, sans-serif;
-    background-color: #3399FF;
-    color: #FFFFFF;
-    font-size: 20pt;
-    height:auto;
+  display: block;
+  margin: 0;
+  width: 90%;
+  font-family: sans-serif;
+  font-size: 30px;
+  height: auto;
+  appearance: none;
+  box-shadow: 4px;
+  border-radius: 8px;
+  transition: 0.5s linear all;
+  background: white;
+  }
+  &.invalid {
+  transition: 0.5s linear all;
+  background: #ee2b2b;
+  color: white;
   }
 
 }
 
-form {
+
+
+/*Conditionally change placeholder color so it shows up when red:*/
+
+.invalid::-webkit-input-placeholder { /* Safari, Chrome and Opera */
+color: #ffb7b7;
+}
+.invalid:-moz-placeholder { /* Firefox 18- */
+color: #ffb7b7;
+}
+.invalid::-moz-placeholder { /* Firefox 19+ */
+color: #ffb7b7;
+}
+.invalid:-ms-input-placeholder { /* IE 10+ */
+color: #ffb7b7;
+}
+.invalid::-ms-input-placeholder { /* Edge */
+color: #ffb7b7;
+}
+
+
+#loginButton
+{
+  transition: 0.3s linear all;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: Arial;
+  color: #2e2e2e;
+  font-size: 30px;
+  background: #ffffff;
+  padding: 8px 20px 10px 20px;
+  text-decoration: none;
+  top:-30px;
+}
+
+#loginButton:hover {
+  transition: 0.3s linear all;
+  background: #00cc00;
+  color: #ffffcc;
+  text-decoration: none;
+}
+
+#playAgainButton
+{
+  transition: 0.3s linear all;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: Arial;
+  color: #2e2e2e;
+  font-size: 30px;
+  background: #ffffff;
+  padding: 8px 20px 10px 20px;
+  text-decoration: none;
+    left:32%;
+    -webkit-animation:bounce 1s infinite;
+  top: 20px;
+}
+#playAgainButton:hover {
+  transition: 0.3s linear all;
+  background: #00cc00;
+  color: #ffffcc;
+  text-decoration: none;
+}
+@-webkit-keyframes #playAgainButton {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
+
+#mainSubmitButton
+{
+  transition: 0.3s linear all;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: Arial;
+  color: #2e2e2e;
+  font-size: 30px;
+  background: #ffffff;
+  padding: 8px 20px 10px 20px;
+  text-decoration: none;
+  top:-30px;
+}
+
+#mainSubmitButton:hover {
+  transition: 0.3s linear all;
+  background: #00cc00;
+  color: #ffffcc;
+  text-decoration: none;
+}
+
+#timeOptions {
   display: block;
   margin: 0;
-  width: 100%;
+  width: 90%;
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 30px;
+  height: auto;
   appearance: none;
   box-shadow: none;
-  border-radius: none;
+  border-radius: 8px;
 }
 
-.my-input {
-  transition: 0.5s linear all;
-  background: white;
+#mainUNField {
+  display: block;
+  margin: 0;
+  width: 90%;
+  font-family: sans-serif;
+  font-size: 30px;
+  height: auto;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 8px;
 }
 
-.invalid {
-  background: red;
-  color: white;
+#mainPWField {
+  display: block;
+  margin: 0;
+  width: 90%;
+  font-family: sans-serif;
+  font-size: 30px;
+  height: auto;
+  appearance: none;
+  box-shadow: 4px;
+  border-radius: 8px;
 }
+
+#monstID {
+  top: -200px;
+  }

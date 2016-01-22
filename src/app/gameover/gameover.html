@@ -1,21 +1,19 @@
 <div class="container">
 
     <div class="row">
-        <div class="small-12 large-3 columns">
-            High Score
+        <div class="small-12 large-6 large-text-center columns">
+            <img align="center" ng-src="{{gameover.gameLogo}}">
         </div>
         <div class="small-12 large-6 large-text-center columns">
-            Loginator
-        </div>
-        <div class="small-12 large-3 columns">
             <p>High Score: {{gameover.highScore}}</p>
             <p>Your Score: {{gameover.score}}</p>
+            <p>{{gameover.userMessage}}</p>
         </div>
     </div>
 
     <div class="row">
       <div class="medium-6 large-centered columns">
-            <button type="button" class="large button" ui-sref="home">Play Again!</button>
+            <button id = "playAgainButton" type="button" class="large button" ui-sref="home">Play Again!</button>
         </div>
     </div>
 

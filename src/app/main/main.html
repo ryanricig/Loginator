@@ -2,15 +2,16 @@
 
   <div class="row">
     <div class="small-12 large-3 columns">
-      <p>High Score: {{main.highScore}}</p>
+      <p>Score: {{main.score}}</p>
+      <p id="timeText">Time: {{main.timeRemaining}}</p>
+      <p>Next: +{{main.displayNextScore}}</p>
     </div>
-    <div class="small-12 large-6 large-text-center columns">
-      Loginator
+    <div class="small-12 large-6 large-text-center columns" >
+      <img align="center" id="monstID" ng-src="{{main.gameLogo}}">
     </div>
     <div class="small-12 large-3 columns">
-      <!--<p>Score: {{dataservice.gameScore}}</p>-->
-      <p>Score: {{main.score}}</p>
-      <p>Time: {{main.timeRemaining}}</p>
+      <p>High Score: {{main.highScore}}</p>
+      <p>Streak: {{main.streak}}</p>
     </div>
   </div>
 
@@ -20,27 +21,30 @@
         <div class="row">
           <div class="medium-6 large-centered columns">
             <label id="un">Username
-              <input type="text" placeholder="Enter Username" data-ng-model="main.username">
+              <input type="text" class="log-text" id="mainUNField" placeholder="Enter Username" autocomplete="off" data-ng-model="main.username">
             </label>
           </div>
         </div>
         <div class="row">
           <div class="medium-6 large-centered columns">
             <label id="pw">Password
-              <input type="password" placeholder="Enter Password" data-ng-model="main.password" ng-pattern="a">
+              <input type="password" id="mainPWField" placeholder="Enter Password" data-ng-model="main.password" ng-pattern="a">
             </label>
           </div>
         </div>
+
+      </br>
+
         <div class="row">
           <div class="medium-6 large-centered columns">
-            <button type="submit" class="large button">Submit</button>
+            <button id = "mainSubmitButton" type="submit" class="large button">Submit</button>
           </div>
         </div>
 
-
+<a href="a"></a>
         <div class="row">
-          <div class="medium-6 large-centered columns">
-            <p class="log-user-message">{{main.userMessage}}</p>
+          <div class="large-6 large-centered columns">
+          <p class="log-user-message">{{main.userMessage}}</p>
             <div class="log-monster">
               <div class="log-multiplier-left">{{main.multiplierMessage}}</div>
               <div class="log-multiplier-right">{{main.multiplierMessage}}</div>
@@ -48,10 +52,6 @@
             </div>
           </div>
         </div>
-
-
-
-
       </form>
 
     </div>
@@ -62,7 +62,3 @@
   </div>
 
 </div>
-
-
-
-

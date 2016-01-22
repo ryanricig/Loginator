@@ -11,12 +11,15 @@
     //display variables
     var vm = this;
     vm.loginError = false;
-
+//////////////////////////////////////////////////////60
     vm.credentials = {
+      tm: '60',
       un: '',
       pw: ''
     };
 
+    vm.monsterHead = './assets/images/head-dancing.gif';
+    vm.gameLogo = './assets/images/Loginator-Logo.png';
     vm.response = null;
 
     //internal variables
@@ -40,13 +43,10 @@
 
     };
 
-
     //internal functions
     activate();
 
     function activate() {
-
-
     }
 
   }

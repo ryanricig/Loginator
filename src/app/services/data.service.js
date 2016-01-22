@@ -12,11 +12,11 @@
     var service = {
       highScore: 0,
       gameScore: 0,
+      
       setHighScore: setHighScore,
       getHighScore: getHighScore,
       clearHighScore: clearHighScore
     };
-
 
     function setHighScore(score) {
 
@@ -62,5 +62,3 @@
   }
 
 })();
-
-
