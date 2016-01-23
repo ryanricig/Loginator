@@ -2,7 +2,7 @@
  *  If you want to override some foundation settings, you have to change values here.
  *  The list of settings values are listed here bower_components/foundation/scss/foundation/_settings.scss
  */
-$topbar-bg-color: #5AADBB;
+$topbar-bg-color: #51b3c4;
 
 /**
  *  The import of foundation is made manually because there is still no links of the
@@ -13,6 +13,8 @@ $topbar-bg-color: #5AADBB;
 
 @import 'styles/countdown';
 @import 'styles/type';
+@import 'styles/forms';
+@import 'styles/animations';
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
@@ -40,6 +42,95 @@ $topbar-bg-color: #5AADBB;
     width: 50px;
   }
 }
+body, div, p{
+  font-family: "Montserrat", Arial, sans-serif;
+    background-color : #3399FF;
+    color : #FFFFFF;
+    font-size : 25pt;
+}
+
+label{
+    font-family: "Montserrat", Arial, sans-serif;
+    background-color : #3399FF;
+    color : #FFFFFF;
+    font-size : 15pt;
+}
+
+input{
+    font-family: "Montserrat", Arial, sans-serif;
+    background-color : #3399FF;
+    color : #FFFFFF;
+    font-size : 30pt;
+}
+
+.my-input {
+  transition:0.5s linear all;
+  background: white;
+}
+
+.my-input.ng-invalid {
+  background: red;
+  color:white;
+}
+
+
+
+
+
+.blink_text {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    color: red;
+}
+@-moz-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+@-webkit-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+@keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+
+
+
+
+
 
 
 

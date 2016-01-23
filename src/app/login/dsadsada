@@ -1,0 +1,507 @@
+angular.module('myApp', ['ngAudio']);
+(function () {
+  'use strict';
+
+  angular
+    .module('loginApp')
+    .controller('MainController', MainController);
+
+  /** @ngInject */
+  function MainController($timeout, $state, dataService, credentialService, ngAudio) {
+
+    //display variables
+    var vm = this;
+
+    vm.highScore = dataService.highScore;
+    vm.score = 0;
+    vm.nextPointValue = 100;
+    vm.countDownRemaining = 3;
+    vm.username = '';
+    vm.password = '';
+    vm.gameStarted = false;
+    vm.userMessage = '';
+    vm.addScore = 0;
+    vm.streak = 0;
+    vm.longestStreak = 0;
+    vm.displayNextScore = 100;
+    vm.twoSecs = 2;
+    vm.realUN = credentialService.credentials.un;
+    vm.realPW = credentialService.credentials.pw;
+    //vm.timeRemaining = credentialService.credentials.tm;
+   // setTime(credentialService.credentials.tm);
+    vm.timeRemaining = dataService.seconds;
+
+
+    vm.monster = './assets/images/monster-standing.png';
+    vm.scoreOne = ngAudio.load('./assets/sounds/1.mp3');
+    vm.scoreTwo = ngAudio.load('./assets/sounds/2.mp3');
+    vm.scoreThree = ngAudio.load('./assets/sounds/3.mp3');
+    vm.bgSong = ngAudio.load('./assets/sounds/bgSong.mp3');
+    vm.wrong = ngAudio.load('./assets/sounds/wrong.mp3');
+
+    vm.localCredCheck = localCredCheck;
+    var gameTimeout;
+    var countdownTimeout;
+    var twoSecsTimeout;
+    var usernameElement = angular.element(document.querySelector('#un'));
+    var passwordElement = angular.element(document.querySelector('#pw'));
+
+    function localCredCheck() {
+      usernameElement.focus();
+      usernameElement.removeClass('invalid');
+      passwordElement.removeClass('invalid');
+      
+      vm.multiplierMessage = "";
+      //vm.userMessage = "";
+      if(vm.addScore < 300)
+          {vm.displayNextScore=vm.addScore+100;}
+      if (angular.lowercase(vm.username) != vm.realUN && angular.uppercase(vm.username) != vm.realUN) {
+        //Username is not case-sensitive
+        usernameElement.addClass('invalid');
+        if (vm.streak > vm.longestStreak){
+          vm.longestStreak=vm.streak;
+        }
+        vm.streak = 0;
+        usernameElement.focus();
+        vm.wrong.play();
+        vm.username = "";
+        vm.addScore = 0;
+      }
+      else {
+        vm.username = vm.realUN;
+      }
+
+      if (vm.password != vm.realPW) {
+        if (angular.lowercase(vm.password) == vm.realPW) {
+          vm.userMessage = "Is your capslock on?";
+        }
+        vm.wrong.play();
+        passwordElement.addClass('invalid');
+
+        if (vm.username == vm.realUN) {
+          passwordElement.focus();
+        }
+        vm.password = "";
+        if (vm.streak > vm.longestStreak){
+          vm.longestStreak=vm.streak;
+        }
+        if (vm.streak > vm.longestStreak){
+          vm.longestStreak=vm.streak;
+        }
+        vm.streak = 0;
+        vm.addScore = 0;
+      }
+
+      if (vm.password != vm.realPW && angular.lowercase(vm.username) != vm.realUN && angular.uppercase(vm.username) != vm.realUN) {
+        usernameElement.focus();
+      }
+      if (vm.username == vm.realUN && vm.password == vm.realPW) {
+
+        if (vm.addScore < 300) {
+          vm.addScore = vm.addScore + 100;
+        }
+
+        usernameElement.removeClass('invalid');
+        passwordElement.removeClass('invalid');
+        vm.score += vm.addScore;
+        vm.twoSecs = 2;
+        if (vm.addScore == 100){
+            vm.scoreOne.play();
+        }
+        else if (vm.addScore == 200){
+            vm.scoreTwo.play();
+        }
+        else {
+            vm.scoreThree.play();
+        }
+        vm.streak++;
+        twoSecondMessages();
+        vm.username = '';
+        vm.password = '';
+        usernameElement.focus();
+
+      }
+    if(vm.addScore < 300)
+          {vm.displayNextScore=vm.addScore+100;}
+    }
+
+
+    //SUCCESS MESSAGE TIMER
+    function twoSecondMessages() {
+   
+      vm.multiplierMessage = '+' + vm.addScore;
+      vm.monster = './assets/images/monster-jumping.png';
+      if (vm.twoSecs > 1) {
+        vm.twoSecs--;
+        twoSecsTimeout = $timeout(twoSecondMessages, 1000);
+      } else {
+        vm.multiplierMessage = '';
+        vm.userMessage = '';
+        vm.monster = './assets/images/monster-standing.png';
+      }
+
+    }
+
+    //COUNTDOWN TIMER
+    function startCountdownTimer() {
+      countdownTimeout = $timeout(onCountdownTimeout, 1000);
+    }
+
+    function onCountdownTimeout() {
+      if (vm.countDownRemaining > 1) {
+        vm.countDownRemaining--;
+        
+        console.log(vm.countDownRemaining);
+        countdownTimeout = $timeout(onCountdownTimeout, 1000);
+      } else {
+        vm.countDownRemaining = "GO!";
+        $timeout(startGameTimer, 1500);
+        stopCountdownTimer();
+      }
+    }
+
+    function stopCountdownTimer() {
+      $timeout.cancel(countdownTimeout);
+    }
+
+    //GAME TIMER
+    function startGameTimer() {
+      vm.gameStarted = true;
+      vm.bgSong.play();
+      usernameElement.focus();
+      gameTimeout = $timeout(onTimeout, 1000);
+    }
+
+    function onTimeout() {
+      if (vm.timeRemaining > 0) {
+        vm.timeRemaining--;
+        gameTimeout = $timeout(onTimeout, 1000);
+      } else {
+        stopTimer();
+        dataService.setHighScore(vm.score).then(function(){
+          vm.bgSong.stop();
+          $state.go('gameover');
+        });
+
+      }
+    }
+
+    function stopTimer() {
+      $timeout.cancel(gameTimeout);
+    }
+
+    activate();
+
+    function activate() {
+      dataService.gameScore = 0;
+      dataService.getHighScore().then(function(highScore){
+        vm.highScore = dataService.highScore;
+        startCountdownTimer();
+      });
+
+    }
+
+
+  }
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="small-12 large-6 large-centered large-text-center columns">
+Loginator
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="large-12 columns">
+      <form ng-submit="login.checkCreds()">
+        <div class="row">
+          <div class="medium-6 large-centered columns">
+            <label>Username
+              <input class="log-text" ng-model="login.credentials.un" type="text" placeholder="Enter Username">
+            </label>
+          </div>
+          </div>
+        <div class="row">
+          <div class="medium-6 large-centered columns">
+            <label>Password
+              <input class="log-text" ng-model="login.credentials.pw" type="password" class="inputlg" placeholder="Enter Password">
+            </label>
+
+      <label>Playing Time:
+        <!--<select id = "timeOptions" class="log-select" name="playTime" ng-model="login.credentials.tm">-->
+          <select id = "timeOptions" class="log-select" name="playTime" ng-model="login.credentials.tm">
+          <option value="60" hidden>1 minute</option>
+          <option value=60 selected>1 minute</option>
+          <option value=120>2 minutes</option>
+          <option value=180>3 minutes</option>
+        </select>
+      </label>
+      <br>
+            <button type="submit" id = "loginButton" class="large button">Check Me!</button>
+          </div>
+        </div>
+
+      </form>
+      <div ng-cloak ng-show="login.loginError" class="alert callout" data-closable>
+        <h5>Login Error</h5>
+        <p>Try again little kid!</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function() {
+  'use strict';
+
+  angular
+    .module('loginApp')
+    .controller('GameOverController', GameOverController);
+
+  /** @ngInject */
+  function GameOverController(dataService, credentialService) {
+
+    //display variables
+    var vm = this;
+    vm.credentials = {
+      tm: '',
+      un: '',
+      pw: ''
+    };
+
+    vm.userMessage = '';
+    //vm.longestStreak = main.vm.longestStreak;
+    vm.gameTime = credentialService.credentials.tm;
+    vm.highScore = dataService.highScore;
+    vm.score = dataService.gameScore;
+    if (vm.score==vm.highScore){
+      vm.userMessage="NEW HIGH SCORE!!!!";
+    }
+  }
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function () {
+  'use strict';
+
+  angular
+    .module('loginApp')
+    .factory('dataService', dataService);
+
+
+  /** @ngInject */
+  function dataService($localForage, $q) {
+
+    var service = {
+      highScore: 0,
+      gameScore: 0,
+      seconds:60,
+      setHighScore: setHighScore,
+      getHighScore: getHighScore,
+      clearHighScore: clearHighScore
+    };
+
+
+    function setTime(timeSelect) {
+      var deferred = $q.defer();
+      service.seconds=timeSelect;
+      return deferred.promise;
+    }
+
+     function getTime() {
+      var deferred = $q.defer();
+      return service.seconds;
+    }
+
+    function setHighScore(score) {
+
+      var deferred = $q.defer();
+
+      service.gameScore = score;
+
+      if (score > service.highScore) {
+        $localForage.setItem('highScore', score).then(function () {
+          service.highScore = score;
+          console.log('dataService: setHighScore: set new high score: ', score);
+          deferred.resolve(true);
+        });
+      } else {
+        console.log('dataService: setHighScore: existing high score was higher');
+        deferred.resolve(false);
+      }
+
+      return deferred.promise;
+    }
+
+    function getHighScore() {
+
+      var deferred = $q.defer();
+
+      $localForage.getItem('highScore').then(function (highScore) {
+        service.highScore = highScore;
+        console.log('dataService: getHighScore: set high score: ', highScore);
+        deferred.resolve(highScore);
+      });
+
+      return deferred.promise;
+    }
+
+    function clearHighScore() {
+      $localForage.removeItem('highScore').then(function () {
+        service.highScore = 0;
+        console.log('dataService: clearHighScore: cleared high score');
+      });
+    }
+
+    return service;
+  }
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function() {
+  'use strict';
+
+  angular
+    .module('loginApp')
+    .controller('LoginController', LoginController);
+
+  /** @ngInject */
+  function LoginController($state, credentialService) {
+
+    //display variables
+    var vm = this;
+    vm.loginError = false;
+//////////////////////////////////////////////////////60
+    vm.credentials = {
+      tm: '60',
+      un: '',
+      pw: ''
+    };
+
+    vm.response = null;
+
+    //internal variables
+
+    //view functions
+    vm.checkCreds = function(){
+      vm.loginError = false;
+
+      if(!vm.credentials.un || !vm.credentials.pw){
+        vm.loginError = true;
+
+      }else{
+        vm.response = credentialService.checkCredentials(vm.credentials);
+
+        if(vm.response > 0){
+          $state.go('home');
+        }else{
+          vm.loginError = true;
+        }
+      }
+
+    };
+
+
+    //internal functions
+    activate();
+
+    function activate() {
+    }
+
+  }
+})();

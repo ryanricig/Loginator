@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('loginApp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router']);
+    .module('loginApp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'LocalForageModule', 'ngResource', 'ngAudio', 'ui.router']);
 
 })();

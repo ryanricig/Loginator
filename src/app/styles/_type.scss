@@ -1,3 +1,81 @@
 body, div, p{
-  font-family: "Montserrat", Arial, sans-serif;
+ 	font-family: "Montserrat", Arial, sans-serif;
+    background-color : #3399FF;
+    color : #FFFFFF;
+    font-size : 25pt;
+}
+
+label{
+  	font-family: "Montserrat", Arial, sans-serif;
+    background-color : #3399FF;
+    color : #FFFFFF;
+    font-size : 15pt;
+}
+
+input{
+    font-family: "Montserrat", Arial, sans-serif;
+    background-color : #3399FF;
+    color : #FFFFFF;
+    //font-size : 30pt;
+
+     display: block;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+
+.noBlink_text{
+    
+ }
+ .blink_text {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    color: red;
+}
+@-moz-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+@-webkit-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+@keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
 }
