@@ -31,12 +31,12 @@ input[type="text"], input[type="password"] {
   background: #ee2b2b;
   color: white;
   }
-
 }
 
 
 
-/*Conditionally change placeholder color so it shows up when red:*/
+/*Conditionally change placeholder color to off-white, so it 
+shows up when the background is red:*/
 
 .invalid::-webkit-input-placeholder { /* Safari, Chrome and Opera */
 color: #ffb7b7;
@@ -54,6 +54,8 @@ color: #ffb7b7;
 color: #ffb7b7;
 }
 
+/* I used ID's for the following elements because they always 
+take precedence.*/ 
 
 #loginButton
 {
@@ -93,6 +95,7 @@ color: #ffb7b7;
     -webkit-animation:bounce 1s infinite;
   top: 20px;
 }
+
 #playAgainButton:hover {
   transition: 0.3s linear all;
   background: #00cc00;

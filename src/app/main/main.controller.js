@@ -22,6 +22,9 @@ angular.module('myApp', ['ngAudio']);
     vm.userMessage = '';
     vm.addScore = 0;
     vm.streak = 0;
+    /*I'm keeping track of the longest streak, in case I want to include it later.
+    Right now, it just clutters things up. I might pass it to GameOver, but I really
+    like how that screen looks too. */
     vm.longestStreak = 0;
     vm.displayNextScore = 100;
     vm.twoSecs = 2;
@@ -62,7 +65,7 @@ angular.module('myApp', ['ngAudio']);
       if(vm.addScore < 300)
           {vm.displayNextScore=vm.addScore+100;}
       if (angular.lowercase(vm.username) != vm.realUN && angular.uppercase(vm.username) != vm.realUN) {
-        //Username is not case-sensitive
+        //Username is not case-sensitive, so let's check for both.
         usernameElement.addClass('invalid');
         if (vm.streak > vm.longestStreak){
           vm.longestStreak=vm.streak;
@@ -181,9 +184,13 @@ angular.module('myApp', ['ngAudio']);
     }
 
     function onTimeout() {
+      if(vm.timeRemaining == 10) {
+          timeTextElement.addClass('blink_text');
+          }
       if (vm.timeRemaining > 0) {
+        
         vm.timeRemaining--;
-          if(vm.timeRemaining ==0) {
+        if(vm.timeRemaining ==0) {
           vm.boop2.play();
         }
           else if(vm.timeRemaining <= 3) {
@@ -198,9 +205,6 @@ angular.module('myApp', ['ngAudio']);
           $state.go('gameover');
         });
       }
-      if(vm.timeRemaining == 10) {
-          timeTextElement.addClass('blink_text');
-          }
     }
 
     function stopTimer() {

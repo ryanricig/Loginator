@@ -28,9 +28,8 @@ input{
   border-radius: none;
 }
 
-.noBlink_text{
-    
- }
+//The timer will blink red from 10-0 seconds. 
+
  .blink_text {
     -webkit-animation-name: blinker;
     -webkit-animation-duration: 1s;

@@ -5,14 +5,12 @@
     .module('loginApp')
     .factory('dataService', dataService);
 
-
   /** @ngInject */
   function dataService($localForage, $q) {
 
     var service = {
       highScore: 0,
       gameScore: 0,
-      
       setHighScore: setHighScore,
       getHighScore: getHighScore,
       clearHighScore: clearHighScore
@@ -34,7 +32,6 @@
         console.log('dataService: setHighScore: existing high score was higher');
         deferred.resolve(false);
       }
-
       return deferred.promise;
     }
 
@@ -47,7 +44,6 @@
         console.log('dataService: getHighScore: set high score: ', highScore);
         deferred.resolve(highScore);
       });
-
       return deferred.promise;
     }
 
@@ -57,8 +53,6 @@
         console.log('dataService: clearHighScore: cleared high score');
       });
     }
-
     return service;
   }
-
 })();
