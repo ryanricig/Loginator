@@ -11,8 +11,8 @@
     //display variables
     var vm = this;
     vm.loginError = false;
-//////////////////////////////////////////////////////60
     vm.credentials = {
+      //user-selected playing time, in seconds. I had to set it to 0 to get rid of the blank first option.
       tm: '60',
       un: '',
       pw: ''
@@ -22,7 +22,6 @@
     vm.gameLogo = './assets/images/Loginator-Logo.png';
     vm.response = null;
 
-    //internal variables
 
     //view functions
     vm.checkCreds = function(){
@@ -40,9 +39,7 @@
           vm.loginError = true;
         }
       }
-
     };
-
     //internal functions
     activate();
 
